@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
-const localRestaurants = [
+export const localRestaurants = [
   {
     name: "Beachside Bar",
     image_url:
@@ -33,8 +33,8 @@ const localRestaurants = [
   },
 ];
 
-const RestaurantItems = () => {
-  return localRestaurants.map((restaurant, index) => (
+const RestaurantItems = (props) => {
+  return props.restaurantData.map((restaurant, index) => (
     <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
       <View
         key={index}
@@ -70,7 +70,7 @@ const RestaurantImage = (props) => (
   </>
 );
 
-const RestaurantInfo = (props) => (
+const RestaurantInfo = ({ name, rating }) => (
   <View
     style={{
       flexDirection: "row",
@@ -86,7 +86,7 @@ const RestaurantInfo = (props) => (
           fontWeight: "bold",
         }}
       >
-        {props.name}
+        {name}
       </Text>
       <Text style={{ fontSize: 13, color: "gray" }}>35-45 · min</Text>
     </View>
@@ -100,7 +100,7 @@ const RestaurantInfo = (props) => (
         borderRadius: 15,
       }}
     >
-      <Text>{props.rating}</Text>
+      <Text>{rating}</Text>
     </View>
   </View>
 );
