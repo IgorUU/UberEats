@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 const localRestaurants = [
   {
@@ -32,10 +33,11 @@ const localRestaurants = [
   },
 ];
 
-const RestaurantItem = () => {
-  return (
+const RestaurantItems = () => {
+  return localRestaurants.map((restaurant, index) => (
     <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
       <View
+        key={index}
         style={{
           marginTop: 10,
           padding: 15,
@@ -43,19 +45,19 @@ const RestaurantItem = () => {
         }}
       >
         {/* RestaurantImage */}
-        <RestaurantImage />
+        <RestaurantImage image_url={restaurant.image_url} />
         {/* RestaurantInfo */}
-        <RestaurantInfo />
+        <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
       </View>
     </TouchableOpacity>
-  );
+  ));
 };
 
-const RestaurantImage = () => (
+const RestaurantImage = (props) => (
   <>
     <Image
       source={{
-        uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg",
+        uri: props.image_url,
       }}
       style={{
         width: "100%",
@@ -68,7 +70,7 @@ const RestaurantImage = () => (
   </>
 );
 
-const RestaurantInfo = () => (
+const RestaurantInfo = (props) => (
   <View
     style={{
       flexDirection: "row",
@@ -84,7 +86,7 @@ const RestaurantInfo = () => (
           fontWeight: "bold",
         }}
       >
-        Farmhouse kitchen Thai Cuisine
+        {props.name}
       </Text>
       <Text style={{ fontSize: 13, color: "gray" }}>35-45 · min</Text>
     </View>
@@ -98,9 +100,9 @@ const RestaurantInfo = () => (
         borderRadius: 15,
       }}
     >
-      <Text>4</Text>
+      <Text>{props.rating}</Text>
     </View>
   </View>
 );
 
-export default RestaurantItem;
+export default RestaurantItems;
