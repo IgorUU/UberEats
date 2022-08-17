@@ -9,7 +9,7 @@ const SearchBar = ({ cityHandler }) => {
     <View style={{ marginTop: 15, flexDirection: "row" }}>
       <GooglePlacesAutocomplete
         query={{
-          key: "AIzaSyB-TPIrRhWT-rvh9eclIpYs8pEKoup6MRY",
+          key: "OVDE UBACI MOJ GOOGLE PLACE API KEY",
           language: "en",
         }}
         onPress={(data, details = null) => {
