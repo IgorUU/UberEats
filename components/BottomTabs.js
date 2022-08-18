@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const BottomTabs = () => {
@@ -28,21 +28,23 @@ const BottomTabs = () => {
 };
 
 const Icon = (props) => (
-  <View
-    style={{
-      alignItems: "center",
-    }}
-  >
-    <FontAwesome5
-      name={props.icon}
-      size={25}
+  <TouchableOpacity>
+    <View
       style={{
-        marginBottom: 3,
-        alignSelf: "center",
+        alignItems: "center",
       }}
-    />
-    <Text>{props.text}</Text>
-  </View>
+    >
+      <FontAwesome5
+        name={props.icon}
+        size={25}
+        style={{
+          marginBottom: 3,
+          alignSelf: "center",
+        }}
+      />
+      <Text>{props.text}</Text>
+    </View>
+  </TouchableOpacity>
 );
 
 export default BottomTabs;

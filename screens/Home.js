@@ -53,7 +53,7 @@ const Home = () => {
         <Categories />
         <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
-      <Divider width={1} />
+      <Divider width={2} />
       <BottomTabs />
     </SafeAreaView>
   );
