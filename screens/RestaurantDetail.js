@@ -6,7 +6,11 @@ import MenuItems from "../components/restaurantDetail/MenuItems";
 
 const RestaurantDetails = () => {
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
       <About />
       <Divider width={1.8} style={{ marginVertical: 20 }} />
       <MenuItems />
