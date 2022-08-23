@@ -11,6 +11,9 @@ const yelpRestaurantInfo = {
   categories: [{ title: "Thai" }, { title: "Comfort food" }],
 };
 
+const { name, yelp_image, price, reviews, rating, categories } =
+  yelpRestaurantInfo;
+
 const image =
   "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2022%2F03%2F29%2Fpasta-power-tout.jpg";
 
