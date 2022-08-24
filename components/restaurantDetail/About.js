@@ -1,3 +1,4 @@
+import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { Text, View, Image } from "react-native";
 
@@ -11,22 +12,37 @@ const yelpRestaurantInfo = {
   categories: [{ title: "Thai" }, { title: "Comfort food" }],
 };
 
-const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
+const About = (props) => {
+  const YELP_API_KEY =
+    "H0BWn3C1WOC3Hjf1RByuvniAl2rrIpf_xLYe1WQwathXyfbPPWmpzVOu8QkIZbmcGHqA7XcaBRfNTPWHIqMTIT5E6yX_vnqdIlbXd9dqGL5xNFJm5EHC6zegJRr8YnYx";
 
-const formatedCategories = categories.map((cat) => cat.title).join(" · ");
+  const restaurantId = props.route.params.restaurantId;
+  const url = `https://api.yelp.com/v3/businesses/${restaurantId}`;
+  const apiOptions = {
+    headers: {
+      Authorization: `Bearer ${YELP_API_KEY}`,
+    },
+  };
 
-const yelpDescription = `${formatedCategories} ${
-  price ? " · " + price : ""
-}  · 🎫 · ${rating} ⭐ (${reviews}+)`;
+  return fetch(url, apiOptions)
+    .then((response) => response.json())
+    .then((json) => {
+      const { name, image_url, price, reviews, rating, categories } = json;
+      console.log(name);
+      const formatedCategories = categories.map((cat) => cat.title).join(" · ");
 
-const About = () => {
-  return (
-    <View>
-      <RestaurantImage image_url={image} />
-      <RestaurantName name={name} />
-      <RestaurantDescription description={yelpDescription} />
-    </View>
-  );
+      const yelpDescription = `${formatedCategories} ${
+        price ? " · " + price : ""
+      }  · 🎫 · ${rating} ⭐ (${reviews}+)`;
+
+      return (
+        <View>
+          <RestaurantImage image_url={image_url} />
+          <RestaurantName name={name} />
+          <RestaurantDescription description={yelpDescription} />
+        </View>
+      );
+    });
 };
 
 const RestaurantImage = (props) => (

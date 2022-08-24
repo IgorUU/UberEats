@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 export const localRestaurants = [
   {
@@ -33,26 +32,32 @@ export const localRestaurants = [
   },
 ];
 
-const RestaurantItems = (props) => {
-  return (
-    <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
-      {props.restaurantData.map((restaurant, index) => (
-        <View
-          key={index}
-          style={{
-            marginTop: 10,
-            padding: 15,
-            backgroundColor: "white",
-          }}
-        >
-          {/* RestaurantImage */}
-          <RestaurantImage image_url={restaurant.image_url} />
-          {/* RestaurantInfo */}
-          <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
-        </View>
-      ))}
+const RestaurantItems = ({ navigation, ...props }) => {
+  return props.restaurantData.map((restaurant, index) => (
+    <TouchableOpacity
+      activeOpacity={1}
+      style={{ marginBottom: 30 }}
+      onPress={() =>
+        navigation.navigate("RestaurantDetail", {
+          restaurantId: restaurant.id,
+        })
+      }
+    >
+      <View
+        key={index}
+        style={{
+          marginTop: 10,
+          padding: 15,
+          backgroundColor: "white",
+        }}
+      >
+        {/* RestaurantImage */}
+        <RestaurantImage image_url={restaurant.image_url} />
+        {/* RestaurantInfo */}
+        <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+      </View>
     </TouchableOpacity>
-  );
+  ));
 };
 
 const RestaurantImage = (props) => (
