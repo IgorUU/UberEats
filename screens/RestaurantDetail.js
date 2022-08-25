@@ -12,7 +12,6 @@ const RestaurantDetails = ({ route }) => {
       }}
     >
       <About route={route} />
-      {console.log(route)}
       <Divider width={1.8} style={{ marginVertical: 20 }} />
       <MenuItems />
     </View>

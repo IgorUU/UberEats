@@ -24,25 +24,25 @@ const About = (props) => {
     },
   };
 
-  return fetch(url, apiOptions)
+  const { name, image_url, price, reviews, rating, categories } =
+    yelpRestaurantInfo;
+  const formatedCategories = categories.map((cat) => cat.title).join(" · ");
+
+  const yelpDescription = `${formatedCategories} ${
+    price ? " · " + price : ""
+  }  · 🎫 · ${rating} ⭐ (${reviews}+)`;
+
+  fetch(url, apiOptions)
     .then((response) => response.json())
-    .then((json) => {
-      const { name, image_url, price, reviews, rating, categories } = json;
-      console.log(name);
-      const formatedCategories = categories.map((cat) => cat.title).join(" · ");
+    .then((json) => console.log(json));
 
-      const yelpDescription = `${formatedCategories} ${
-        price ? " · " + price : ""
-      }  · 🎫 · ${rating} ⭐ (${reviews}+)`;
-
-      return (
-        <View>
-          <RestaurantImage image_url={image_url} />
-          <RestaurantName name={name} />
-          <RestaurantDescription description={yelpDescription} />
-        </View>
-      );
-    });
+  return (
+    <View>
+      <RestaurantImage image_url={image_url} />
+      <RestaurantName name={name} />
+      <RestaurantDescription description={yelpDescription} />
+    </View>
+  );
 };
 
 const RestaurantImage = (props) => (
