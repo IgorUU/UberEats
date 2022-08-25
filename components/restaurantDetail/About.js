@@ -1,5 +1,5 @@
 import { useRoute } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, Image } from "react-native";
 
 const yelpRestaurantInfo = {
@@ -13,28 +13,13 @@ const yelpRestaurantInfo = {
 };
 
 const About = (props) => {
-  const YELP_API_KEY =
-    "H0BWn3C1WOC3Hjf1RByuvniAl2rrIpf_xLYe1WQwathXyfbPPWmpzVOu8QkIZbmcGHqA7XcaBRfNTPWHIqMTIT5E6yX_vnqdIlbXd9dqGL5xNFJm5EHC6zegJRr8YnYx";
-
-  const restaurantId = props.route.params.restaurantId;
-  const url = `https://api.yelp.com/v3/businesses/${restaurantId}`;
-  const apiOptions = {
-    headers: {
-      Authorization: `Bearer ${YELP_API_KEY}`,
-    },
-  };
-
   const { name, image_url, price, reviews, rating, categories } =
-    yelpRestaurantInfo;
+    props.route.params;
   const formatedCategories = categories.map((cat) => cat.title).join(" · ");
 
   const yelpDescription = `${formatedCategories} ${
     price ? " · " + price : ""
   }  · 🎫 · ${rating} ⭐ (${reviews}+)`;
-
-  fetch(url, apiOptions)
-    .then((response) => response.json())
-    .then((json) => console.log(json));
 
   return (
     <View>

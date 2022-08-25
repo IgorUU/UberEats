@@ -30,6 +30,7 @@ const BottomTabs = () => {
 const Icon = (props) => (
   <TouchableOpacity>
     <View
+      key={props.index}
       style={{
         alignItems: "center",
       }}
