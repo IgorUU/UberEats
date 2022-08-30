@@ -20,8 +20,8 @@ const BottomTabs = () => {
         justifyContent: "space-between",
       }}
     >
-      {iconsData.map((ikona) => (
-        <Icon icon={ikona[0]} text={ikona[1]} />
+      {iconsData.map((ikona, key) => (
+        <Icon key={key} icon={ikona[0]} text={ikona[1]} />
       ))}
     </View>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import { ScrollView } from "react-native";
 import { Divider } from "react-native-elements";
 import BottomTabs from "../components/home/BottomTabs";

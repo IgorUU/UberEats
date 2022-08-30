@@ -1,5 +1,4 @@
-import { useRoute } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Text, View, Image } from "react-native";
 
 const yelpRestaurantInfo = {
@@ -13,7 +12,7 @@ const yelpRestaurantInfo = {
 };
 
 const About = (props) => {
-  const { name, image_url, price, reviews, rating, categories } =
+  const { name, image, price, reviews, rating, categories } =
     props.route.params;
   const formatedCategories = categories.map((cat) => cat.title).join(" · ");
 
@@ -23,7 +22,8 @@ const About = (props) => {
 
   return (
     <View>
-      <RestaurantImage image_url={image_url} />
+      {console.log(props)}
+      <RestaurantImage image_url={image} />
       <RestaurantName name={name} />
       <RestaurantDescription description={yelpDescription} />
     </View>
