@@ -22,7 +22,6 @@ const About = (props) => {
 
   return (
     <View>
-      {console.log(props)}
       <RestaurantImage image_url={image} />
       <RestaurantName name={name} />
       <RestaurantDescription description={yelpDescription} />
