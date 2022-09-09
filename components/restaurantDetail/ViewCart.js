@@ -2,6 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 const ViewCart = (navigation, ...props) => {
+  console.log(props);
   return (
     <View
       style={{

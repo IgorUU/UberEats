@@ -58,10 +58,14 @@ const styles = StyleSheet.create({
 
 const MenuItems = ({ restaurantName }) => {
   const dispatch = useDispatch();
-  const selectItem = (item) =>
+  const selectItem = (item, checkboxValue) =>
     dispatch({
       type: "ADD_TO_CART",
-      payload: { ...item, resaurantName: restaurantName },
+      payload: {
+        ...item,
+        restaurantName: restaurantName,
+        checkboxValue: checkboxValue,
+      },
     });
 
   return (
@@ -70,7 +74,7 @@ const MenuItems = ({ restaurantName }) => {
         <View key={index}>
           <View style={styles.menuItemStyle}>
             <BouncyCheckbox
-              onPress={() => selectItem(food)}
+              onPress={(checkboxValue) => selectItem(food, checkboxValue)}
               iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
               innerIconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
               fillColor="green"
