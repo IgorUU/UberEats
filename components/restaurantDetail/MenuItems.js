@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { Divider } from "react-native-elements";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const foods = [
   {
@@ -36,7 +36,7 @@ const foods = [
       "https://images.themodernproper.com/billowy-turkey/production/posts/2019/Easy-italian-salad-recipe-10.jpg?w=1200&h=1200&q=82&fm=jpg&fit=crop&fp-x=0.5&fp-y=0.5&dm=1614096227&s=c0f63a30cef3334d97f9ecad14be51da",
   },
   {
-    title: "Lasagna",
+    title: "Lasagna tebra",
     description: "With butter lettuce, tomato and sauce bechamel",
     price: "$13.50",
     image:
@@ -68,12 +68,20 @@ const MenuItems = ({ restaurantName }) => {
       },
     });
 
+  const cartItems = useSelector(
+    (state) => state.cartReducer.selectedItems.items
+  );
+
+  const isFoodInCart = (food, cartItems) =>
+    Boolean(cartItems.find((item) => item.title === food.title));
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((food, index) => (
         <View key={index}>
           <View style={styles.menuItemStyle}>
             <BouncyCheckbox
+              isChecked={isFoodInCart(food, cartItems)}
               onPress={(checkboxValue) => selectItem(food, checkboxValue)}
               iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
               innerIconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
