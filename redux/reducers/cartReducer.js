@@ -6,7 +6,12 @@ let cartReducer = (state = defaultState, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
       let newState = { ...state };
-
+      {
+        /* We need to check what do we have in action.payload */
+      }
+      {
+        /* Is it the array of items we need for menu items */
+      }
       if (action.payload.checkboxValue) {
         console.log("ADD TO CART");
         newState.selectedItems = {

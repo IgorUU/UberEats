@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import OrderItem from "./OrderItem";
 import firebase from "../../firebase";
 
-const ViewCart = ({navigation}) => {
+const ViewCart = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const { items, restaurantName } = useSelector(
@@ -29,8 +29,9 @@ const ViewCart = ({navigation}) => {
     });
     setModalVisible(false);
     navigation.navigate("OrderCompleted", {
+      items: items,
       restaurantName: restaurantName,
-      totalUsd: totalUsd
+      totalUsd: totalUsd,
     });
   };
 
