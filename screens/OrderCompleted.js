@@ -18,6 +18,10 @@ export default function OrderCompleted() {
     style: "currency",
     currency: "USD",
   });
+  {
+    /* Check the structure of items. */
+  }
+  console.log(items);
 
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
@@ -34,7 +38,11 @@ export default function OrderCompleted() {
           Your order at {restaurantName} has been placed for {totalUsd}
         </Text>
         {/* menuItems */}
-        <MenuItems restaurantName={restaurantName} hideCheckbox={true} />
+        <MenuItems
+          restaurantName={restaurantName}
+          hideCheckbox={true}
+          orderedItems={items}
+        />
         {/* cooking */}
         <LottieView
           style={{ height: 200, alignSelf: "center", marginBottom: 30 }}

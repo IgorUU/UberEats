@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MenuItems = ({ restaurantName, hideCheckbox = false }) => {
+const MenuItems = ({ restaurantName, hideCheckbox = false, orderedItems }) => {
   const dispatch = useDispatch();
   const selectItem = (item, checkboxValue) =>
     dispatch({
@@ -75,9 +75,23 @@ const MenuItems = ({ restaurantName, hideCheckbox = false }) => {
   const isFoodInCart = (food, cartItems) =>
     Boolean(cartItems.find((item) => item.title === food.title));
 
+  {
+    /* Here, we need to check what do we have in orderedItems */
+  }
+  {
+    /* If the structure is same as foods, so we can use it later in return statement instead of foods. */
+  }
+  let foodItems = foods;
+
+  if (typeof orderedItems !== "undefined") {
+    foodItems = orderedItems;
+  }
+  console.log(foodItems);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {foods.map((food, index) => (
+      {/* Instead of foods we need to pass array with items from cartReducer */}
+      {foodItems.map((food, index) => (
         <View key={index}>
           <View style={styles.menuItemStyle}>
             {hideCheckbox ? (
